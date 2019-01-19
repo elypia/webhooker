@@ -25,6 +25,7 @@ jar {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 
     reports {
         html.enabled = false
@@ -180,7 +181,7 @@ dependencies {
     codacy 'com.github.codacy:codacy-coverage-reporter:-SNAPSHOT'
 }
 
-task codacyCoverage(type: JavaExec) {
+task codacyCoverage(type: JavaExec, dependsOn: check) {
     main = "com.codacy.CodacyCoverageReporter"
     classpath = configurations.codacy
 
