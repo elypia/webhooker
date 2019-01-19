@@ -185,6 +185,6 @@ task codacyCoverage(type: JavaExec) {
     classpath = configurations.codacy
 
     args = [
-        "report", "-l", "Java", "-r", "${buildDir}/reports/jacoco/test/jacocoReport.xml"
+        "report", "-l", "Java", "-r", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml"
     ]
 }
