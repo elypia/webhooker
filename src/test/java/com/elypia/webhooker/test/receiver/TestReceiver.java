@@ -1,12 +1,14 @@
 package com.elypia.webhooker.test.receiver;
 
-import com.elypia.webhooker.Payload;
+import com.elypia.webhooker.*;
 import com.elypia.webhooker.annotation.*;
+import com.elypia.webhooker.test.entity.Player;
 
 @Mapping("test")
 public class TestReceiver extends Receiver {
 
     private boolean thisStartsFalse;
+    private Player player;
 
     public TestReceiver() {
         thisStartsFalse = false;
@@ -22,7 +24,16 @@ public class TestReceiver extends Receiver {
         payload.getResponse().body("response");
     }
 
+    @Mapping("get_player")
+    public void getPlayer(Payload payload, Player player) {
+        this.player = player;
+    }
+
     public boolean getThisStartsFalse() {
         return thisStartsFalse;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 }

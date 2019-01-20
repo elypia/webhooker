@@ -1,6 +1,7 @@
 package com.elypia.webhooker;
 
 import com.elypia.webhooker.annotation.*;
+import com.google.gson.Gson;
 import spark.*;
 
 import java.lang.reflect.*;
@@ -9,9 +10,11 @@ import java.util.Optional;
 public class PayloadDispatcher {
 
     private WebHooker hooker;
+    private Gson gson;
 
     public PayloadDispatcher(WebHooker hooker) {
         this.hooker = hooker;
+        gson = new Gson();
     }
 
     public void dispatch(Request request, Response response) throws InvocationTargetException, IllegalAccessException {
@@ -37,15 +40,16 @@ public class PayloadDispatcher {
                     switch (count) {
                         case 0: {
                             method.invoke(receiver);
-                            return;
+                            break;
                         }
                         case 1: {
                             method.invoke(receiver, new Payload(request, response));
-                            return;
+                            break;
                         }
                         case 2: {
-                            method.invoke(receiver, new Payload(request, response), null);
-                            return;
+                            var object = gson.fromJson(request.body(), method.getParameterTypes()[1]);
+                            method.invoke(receiver, new Payload(request, response), object);
+                            break;
                         }
                         default: {
                             throw new IllegalStateException("Payload receiving method can only have 0 to 2 parameters.");
