@@ -1,8 +1,10 @@
 package com.elypia.webhooker;
 
-import com.elypia.webhooker.annotation.Receiver;
+import com.elypia.webhooker.annotation.Mapping;
+import org.slf4j.*;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.util.*;
 
@@ -16,10 +18,8 @@ import static spark.Spark.*;
  */
 public class WebHooker implements Closeable {
 
+    private static final Logger logger = LoggerFactory.getLogger(WebHooker.class);
     private static final String PATH = "/%s/:class/:method";
-
-    private static final int MIN_PORT = 49152;
-    private static final int MAX_PORT = 65535;
 
     private final String domain;
 
@@ -36,9 +36,10 @@ public class WebHooker implements Closeable {
      */
     private final String endpoint;
 
-    private Collection<Receiver> receivers;
+    private final Collection<Receiver> receivers;
+    private final PayloadDispatcher dispatcher;
+    private final Set<String> mappings;
 
-    private PayloadDispatcher dispatcher;
 
     public WebHooker(String domain) throws IOException {
         this(domain, 0);
@@ -59,6 +60,7 @@ public class WebHooker implements Closeable {
         endpoint = String.format(PATH, uuid);
         receivers = new ArrayList<>();
         dispatcher = new PayloadDispatcher(this);
+        mappings = new HashSet<>();
 
         port(port);
 
@@ -69,7 +71,61 @@ public class WebHooker implements Closeable {
     }
 
     public boolean add(Receiver... rec) {
-        return receivers.addAll(Arrays.asList(rec));
+        boolean changed = false;
+
+        for (Receiver receiver : rec) {
+            Class<? extends Receiver> clazz = receiver.getClass();
+
+            if (!clazz.isAnnotationPresent(Mapping.class))
+                throw new IllegalArgumentException("Receiver must always have @Mapping annotation to indicate webhook path.");
+
+            Mapping classMapping = clazz.getAnnotation(Mapping.class);
+            String classValue = classMapping.value();
+
+            if (classValue.length() == 0)
+                throw new IllegalArgumentException("Receiver can't have a @Mapping value of length zero.");
+
+            if (!mappings.add(classValue))
+                throw new IllegalArgumentException("Receiver with @Mapping value already exists.");
+
+            Set<String> methodMappings = new HashSet<>();
+            int mappedMethods = 0;
+
+            for (Method method : clazz.getMethods()) {
+                if (!method.isAnnotationPresent(Mapping.class))
+                    continue;
+
+                Class<?>[] types = method.getParameterTypes();
+                int length = types.length;
+
+                if (length  > 2)
+                    throw new IllegalArgumentException("Method with @Mapping can only have 0 to 2 parameters.");
+
+                if (length > 0 && types[0] != Payload.class)
+                    throw new IllegalArgumentException("If @Mapping specifies parameters, the first must be `Payload`.");
+
+                Mapping methodMapping = method.getAnnotation(Mapping.class);
+                String methodValue = methodMapping.value();
+
+                if (methodValue.length() == 0)
+                    throw new IllegalArgumentException("Method can't have a @Mapping value of length zero.");
+
+                if (!methodMappings.add(methodValue))
+                    throw new IllegalArgumentException("Method with @Mapping value already exists.");
+
+                mappedMethods++;
+            }
+
+            if (mappedMethods == 0) {
+                logger.warn("Receiver {} ignored as it had no method mappings.");
+                continue;
+            }
+
+            if (receivers.add(receiver) && !changed)
+                changed = true;
+        }
+
+        return changed;
     }
 
     public Collection<Receiver> getReceivers() {

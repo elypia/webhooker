@@ -1,6 +1,4 @@
-package com.elypia.webhooker.annotation;
-
-import com.elypia.webhooker.Payload;
+package com.elypia.webhooker;
 
 public abstract class Receiver {
 

@@ -23,7 +23,7 @@ test:
       - .gradle
       - build
 
-.bintray:
+bintray:
   only:
     - master
   stage: deploy
