@@ -1,7 +1,7 @@
 package com.elypia.webhooker.test.receiver;
 
 import com.elypia.webhooker.*;
-import com.elypia.webhooker.annotation.*;
+import com.elypia.webhooker.annotation.Mapping;
 import com.elypia.webhooker.test.entity.Player;
 
 @Mapping("test")
@@ -24,8 +24,8 @@ public class TestReceiver extends Receiver {
         payload.getResponse().body("response");
     }
 
-    @Mapping("get_player")
-    public void getPlayer(Payload payload, Player player) {
+    @Mapping("player")
+    public void player(Payload payload, Player player) {
         this.player = player;
     }
 

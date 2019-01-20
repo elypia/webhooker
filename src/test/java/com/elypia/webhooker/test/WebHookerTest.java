@@ -62,12 +62,13 @@ public class WebHookerTest {
     public void mapObject() throws IOException {
         Request request = new Request.Builder()
             .method("POST", RequestBody.create(MEDIA_TYPE, "{\"name\":\"Seth\",\"age\":20}"))
-            .url(hooker.getUrl("test", "get_player"))
+            .url(hooker.getUrl("test", "player"))
             .build();
 
         client.newCall(request).execute();
         Player player = receiver.getPlayer();
 
+        assertNotNull(player);
         assertAll("Assert that player was received correctly.",
             () -> assertEquals("Seth", player.getName()),
             () -> assertEquals(20, player.getAge())
