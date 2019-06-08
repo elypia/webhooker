@@ -19,26 +19,28 @@ test:
   stage: test
   script:
     - gradle --build-cache check
+    - cat core/build/reports/jacoco/test/html/index.html
+
+pages:
+  only:
+    - tags
+    - master
+  stage: deploy
+  script:
+    - mv core/build/docs/javadoc public
+  artifacts:
+    paths:
+      - public
+  cache:
+    policy: pull
+    paths:
+      - build/docs/
 
 bintray:
   only:
+    - tags
     - master
   stage: deploy
   script: gradle bintrayUpload
   cache:
     policy: pull
-
-pages:
-  only:
-    - master
-  stage: deploy
-  script:
-    - mv build/docs/javadoc public
-  artifacts:
-    paths:
-      - public
-  cache:
-    key: $CI_PROJECT_ID
-    policy: pull
-    paths:
-      - build/docs/

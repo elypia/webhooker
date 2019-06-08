@@ -1,4 +1,4 @@
-package com.elypia.webhooker.test.redis;
+package com.elypia.webhooker.redis;
 
 import com.elypia.webhooker.Client;
 import com.elypia.webhooker.*;

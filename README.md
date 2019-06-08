@@ -39,8 +39,8 @@ public class Main {
 
 [discord]: https://discord.gg/hprGMaM "Discord Invite"
 [discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[bintray]: https://bintray.com/elypia/WebHooker "Bintray Latest Version"
-[bintray-download]: https://api.bintray.com/packages/elypia/WebHooker/WebHooker/images/download.svg "Bintray Download Shield"
+[bintray]: https://bintray.com/elypia/webhooker/core/_latestVersion "Bintray Latest Version"
+[bintray-download]: https://api.bintray.com/packages/elypia/webhooker/core/images/download.svg "Bintray Download Shield"
 [docs]: https://webhooker.elypia.com/ "Commandler Documentation"
 [docs-shield]: https://img.shields.io/badge/Docs-WebHooker-blue.svg "Commandler Documentation Shield"
 [gitlab]: https://gitlab.com/Elypia/webhooker/commits/master "Repository on GitLab"
