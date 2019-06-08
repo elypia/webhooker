@@ -21,6 +21,14 @@ test:
     - gradle --build-cache check
     - cat core/build/reports/jacoco/test/html/index.html
 
+bintray:
+  only:
+    - tags
+  stage: deploy
+  script: gradle bintrayUpload
+  cache:
+    policy: pull
+
 pages:
   only:
     - tags
@@ -33,12 +41,4 @@ pages:
   cache:
     policy: pull
     paths:
-      - build/docs/
-
-bintray:
-  only:
-    - tags
-  stage: deploy
-  script: gradle bintrayUpload
-  cache:
-    policy: pull
+      - core/build/docs/
