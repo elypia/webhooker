@@ -38,6 +38,12 @@ public class WebHooker implements Closeable {
      */
     private final ClientController controller;
 
+    /**
+     * The route that is handling payloads and mapping
+     * them to the correct client.
+     */
+    private final WebhookRoute route;
+
     /** A {@link Gson} instance for serializing and deserializing JSON. */
     private final Gson gson;
 
@@ -88,7 +94,8 @@ public class WebHooker implements Closeable {
         if (port != -1)
             port(port);
 
-        post(path, new WebhookRoute(this));
+        route = new WebhookRoute(this);
+        post(path, route);
     }
 
     public Gson getGson() {
@@ -105,6 +112,10 @@ public class WebHooker implements Closeable {
 
     public ClientController getController() {
         return controller;
+    }
+
+    public WebhookRoute getRoute() {
+        return route;
     }
 
     @Override
