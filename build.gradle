@@ -6,11 +6,15 @@ allprojects() {
     apply plugin: "idea"
     apply plugin: "jacoco"
 
-    version = "2.0.0"
-    description = "Small webhook dispatcher host a Spark webserver and receive webhook payloads."
+    group = "com.elypia.webhooker"
+    version = "2.0.1"
+    description = "Webserver with single endpoint for managing webhooks and receiving payloads from clients."
 
     ext {
-        repoUrl = "https://gitlab.com/Elypia/webhooker.git"
+        repoUrl = "https://gitlab.com/Elypia/webhooker"
+        gitUrl = "${repoUrl}.git"
+        issueUrl = "${repoUrl}/issues"
+        website = "https://elypia.com/"
     }
 
     repositories {
@@ -32,15 +36,6 @@ subprojects() {
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
-    jar {
-        from sourceSets.main.allSource
-
-        manifest {
-            attributes "Implementation-Title": "WebHooker",
-                       "Implementation-Version": version
-        }
-    }
-
     dependencies {
         // Logging
         implementation "org.slf4j:slf4j-api:1.7.26"
@@ -52,6 +47,8 @@ subprojects() {
         testImplementation "com.squareup.okhttp3:okhttp:3.14.2"
     }
 
+    /** Testing */
+
     test {
         useJUnitPlatform()
         finalizedBy jacocoTestReport
@@ -61,6 +58,8 @@ subprojects() {
         }
     }
 
+    /** Code Coverage */
+
     jacocoTestReport {
         reports {
             html.enabled = true
@@ -68,25 +67,28 @@ subprojects() {
         }
     }
 
-    /**
-     * Upload to Bintray
-     */
+    /** Upload to Bintray */
 
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = "sources"
-        from sourceSets.main.allSource
+    jar {
+        manifest {
+            attributes "Implementation-Title": "${this.name}-${project.name}",
+                       "Implementation-Version": version
+        }
     }
 
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        from javadoc.destinationDir
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allSource
+        archiveClassifier = 'sources'
+    }
+
+    task javadocJar(type: Jar) {
+        from javadoc
+        archiveClassifier = 'javadoc'
 
         javadoc {
-            options.addBooleanOption("html5", true)
-
             options {
                 links += [
-                    "https://docs.oracle.com/javase/10/docs/api/"
+                    "https://docs.oracle.com/en/java/javase/12/docs/api/"
                 ]
             }
         }
@@ -100,63 +102,57 @@ subprojects() {
     bintray {
         user = System.getenv("BINTRAY_USER")
         key = System.getenv("BINTRAY_KEY")
-        publications = [this.name]
+        publications = ['mavenJava']
         publish = true
-
         pkg {
             repo = this.name
-            name = this.name
+            name = project.name
+            desc = project.description
             userOrg = "elypia"
+            websiteUrl = website
             licenses = ["Apache-2.0"]
-            vcsUrl = repoUrl
-
+            vcsUrl = gitUrl
+            issueTrackerUrl = issueUrl
+            publicDownloadNumbers = true
             version {
-                name = version
-                desc = description
+                name = project.version
+                desc = project.description
+                vcsTag = project.version
                 released = new Date()
             }
         }
     }
 
     publishing {
-        def details = {
-            licenses{
-                license {
-                    name "The Apache Software License, Version 2.0"
-                    url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                    distribution this.name
-                }
-            }
-
-            developers{
-                developer {
-                    id "Seth"
-                    name "Seth"
-                    email "seth@elypia.com"
-                }
-            }
-
-            scm{
-                url repoUrl
-            }
-        }
-
         publications {
-            WebHooker(MavenPublication) {
+            mavenJava(MavenPublication) {
+                artifactId project.name
+                groupId project.group
+                version project.version
                 from components.java
                 artifact sourcesJar
                 artifact javadocJar
-                groupId "com.elypia"
-                artifactId this.name
-                version version
 
-                pom.withXml {
-                    def root = asNode()
-
-                    root.appendNode("description", projectDescription)
-                    root.appendNode("name", this.name)
-                    root.appendNode("url", "https://elypia.com/")
-                    root.children().last() + details
+                pom {
+                    name = this.name
+                    description = project.description
+                    url = website
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "Seth"
+                            name = "Seth"
+                            email = "seth@elypia.com"
+                        }
+                    }
+                    scm {
+                        url = gitUrl
+                    }
                 }
             }
         }

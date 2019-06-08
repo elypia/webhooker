@@ -1,6 +1,7 @@
 package com.elypia.webhooker.test.redis;
 
 import com.elypia.webhooker.Client;
+import com.elypia.webhooker.redis.RedisClientController;
 import org.junit.jupiter.api.*;
 import redis.clients.jedis.Jedis;
 
