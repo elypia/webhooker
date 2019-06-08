@@ -24,7 +24,6 @@ test:
 pages:
   only:
     - tags
-    - master
   stage: deploy
   script:
     - mv core/build/docs/javadoc public
@@ -39,7 +38,6 @@ pages:
 bintray:
   only:
     - tags
-    - master
   stage: deploy
   script: gradle bintrayUpload
   cache:
