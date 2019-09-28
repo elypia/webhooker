@@ -12,14 +12,14 @@ public class Main {
     
     /**
     * This example assumes a reverse proxy is routing
-    * requests from `webhooks.elypia.com` to `localhost:4567`.
+    * requests from `webhooks.elypia.org` to `localhost:4567`.
     * If no reverse proxy is desired, `http://your.public.ip:4567/:uuid` is fine.
     * 
     * @param args
     */
     public static void main(String[] args) {
         // `publicUrl` must specify route parameter `uuid`.
-        WebHooker hooker = new WebHooker("https://webhooks.elypia.com/:uuid", 4567);
+        WebHooker hooker = new WebHooker("https://webhooks.elypia.org/:uuid", 4567);
 
         // Add a new client to the client controller.
         Client client = hooker.getController().add(new Client());
@@ -41,7 +41,7 @@ public class Main {
 [discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [bintray]: https://bintray.com/elypia/webhooker/core/_latestVersion "Bintray Latest Version"
 [bintray-download]: https://api.bintray.com/packages/elypia/webhooker/core/images/download.svg "Bintray Download Shield"
-[docs]: https://webhooker.elypia.com/ "Commandler Documentation"
+[docs]: https://webhooker.elypia.org/ "Commandler Documentation"
 [docs-shield]: https://img.shields.io/badge/Docs-WebHooker-blue.svg "Commandler Documentation Shield"
 [gitlab]: https://gitlab.com/Elypia/webhooker/commits/master "Repository on GitLab"
 [gitlab-build]: https://gitlab.com/Elypia/webhooker/badges/master/pipeline.svg "GitLab Build Shield"

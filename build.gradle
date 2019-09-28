@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019-2019 Elypia CIC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 plugins {
     id "com.jfrog.bintray" version "1.8.4" apply false
 }
@@ -6,7 +22,7 @@ allprojects() {
     apply plugin: "idea"
     apply plugin: "jacoco"
 
-    group = "com.elypia.webhooker"
+    group = "org.elypia.webhooker"
     version = "2.0.2"
     description = "Webserver with single endpoint for managing webhooks and receiving payloads from clients."
 
@@ -14,7 +30,7 @@ allprojects() {
         repoUrl = "https://gitlab.com/Elypia/webhooker"
         gitUrl = "${repoUrl}.git"
         issueUrl = "${repoUrl}/issues"
-        website = "https://elypia.com/"
+        website = "https://elypia.org/"
     }
 
     repositories {
@@ -28,6 +44,7 @@ allprojects() {
 
 subprojects() {
     apply plugin: "java-library"
+    apply plugin: "maven"
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
 
@@ -38,12 +55,12 @@ subprojects() {
 
     dependencies {
         // Logging
-        implementation "org.slf4j:slf4j-api:1.7.26"
+        implementation "org.slf4j:slf4j-api:1.7.28"
         testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
         // Testing
-        testImplementation "org.junit.jupiter:junit-jupiter:5.4.2"
-        testImplementation "org.mockito:mockito-core:2.28.2"
+        testImplementation "org.junit.jupiter:junit-jupiter:5.5.2"
+        testImplementation "org.mockito:mockito-core:3.0.0"
     }
 
     /** Testing */
@@ -87,7 +104,7 @@ subprojects() {
         javadoc {
             options {
                 links += [
-                    "https://docs.oracle.com/en/java/javase/12/docs/api/"
+                    "https://docs.oracle.com/en/java/javase/13/docs/api/"
                 ]
             }
         }
@@ -146,7 +163,7 @@ subprojects() {
                         developer {
                             id = "Seth"
                             name = "Seth"
-                            email = "seth@elypia.com"
+                            email = "seth@elypia.org"
                         }
                     }
                     scm {
