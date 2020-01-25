@@ -23,7 +23,7 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "org.elypia.webhooker"
-    version = "2.0.2"
+    version = "2.0.3"
     description = "Webserver with single endpoint for managing webhooks and receiving payloads from clients."
 
     ext {

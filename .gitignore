@@ -56,3 +56,7 @@ gradle-app.setting
 out/
 build/
 /.idea/
+
+# Eclipse
+*.prefs
+.project
