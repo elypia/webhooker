@@ -49,14 +49,17 @@ gradle-app.setting
 # WebHooker #
 #############
 
-#Configuration
+# Configuration
 *.toml
 
 # IntelliJ
 out/
 build/
-/.idea/
+.idea/
 
 # Eclipse
 *.prefs
 .project
+.settings
+bin/
+.classpath
