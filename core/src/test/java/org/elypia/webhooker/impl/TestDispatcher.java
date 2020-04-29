@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-rootProject.name = 'webhooker'
+package org.elypia.webhooker.impl;
 
-/** The core of WebHooker, small and light libray to receive requests. */
-include "core"
+import org.elypia.webhooker.*;
 
-/** An extension to manage clients via Redis instead of in memory. */
-include "redis"
+/**
+ * @author seth@elypia.org (Syed Shah)
+ */
+public class TestDispatcher implements Dispatcher {
+
+    @Override
+    public boolean dispatch(Payload payload) {
+        return true;
+    }
+}

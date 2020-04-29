@@ -13,32 +13,32 @@ cache:
 
 build:
   stage: build
-  script: gradle --build-cache assemble
+  script: gradle --build-cache --full-stacktrace assemble
 
 test:
   stage: test
   script:
-    - gradle --build-cache check
-    - cat core/build/reports/jacoco/test/html/index.html
+    - gradle --build-cache --full-stacktrace check
+    - gradle jacocoReport
+    - cat build/reports/jacoco/jacocoReport/html/index.html
 
 bintray:
   only:
     - tags
   stage: deploy
   script: gradle bintrayUpload
-  cache:
-    policy: pull
 
 pages:
   only:
     - tags
   stage: deploy
   script:
-    - mv core/build/docs/javadoc public
+    - gradle globalJavadoc
+    - mv build/docs/javadoc public
   artifacts:
     paths:
       - public
   cache:
     policy: pull
     paths:
-      - core/build/docs/
+      - build/docs/

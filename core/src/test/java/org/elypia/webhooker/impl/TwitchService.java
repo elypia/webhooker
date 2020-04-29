@@ -14,10 +14,29 @@
  * limitations under the License.
  */
 
-rootProject.name = 'webhooker'
+package org.elypia.webhooker.impl;
 
-/** The core of WebHooker, small and light libray to receive requests. */
-include "core"
+/**
+ * @author seth@elypia.org (Syed Shah)
+ */
+public class TwitchService {
 
-/** An extension to manage clients via Redis instead of in memory. */
-include "redis"
+    private boolean authorised;
+    private Streamer streamer;
+
+    public boolean isAuthorised() {
+        return authorised;
+    }
+
+    public void setAuthorised(boolean authorised) {
+        this.authorised = authorised;
+    }
+
+    public Streamer getStreamer() {
+        return streamer;
+    }
+
+    public void setStreamer(Streamer streamer) {
+        this.streamer = streamer;
+    }
+}

@@ -1,10 +1,10 @@
-# WebHooker [![Discord][discord-members]][discord] [![Download][bintray-download]][bintray] [![Documentation][docs-shield]][docs] [![GitLab Pipeline Status][gitlab-build]][gitlab] [![Coverage][gitlab-coverage]][gitlab]  
-The [Gradle][gradle]/[Maven][maven] import string can be found at the Download badge above!
+# WebHooker [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+The [Gradle]/[Maven] import string can be found at the Download badge above!
 
 ## About
 WebHooker is a small library for hosting webhook callbacks to receive and dispatch callbacks from
-external services such as Twitch or Slack. This is done by running a webserver using [SparkJava][spark] 
-and serializing JSON with [GSON][gson], and then managing `Client`s to map the request URL to callback(s).
+external services such as Twitch or Slack. This is done by running a webserver using [SparkJava] 
+and serializing JSON with [GSON], and then managing `Client`s to map the request URL to callback(s).
 
 ## Quick-Start
 ```java
@@ -12,14 +12,14 @@ public class Main {
     
     /**
     * This example assumes a reverse proxy is routing
-    * requests from `webhooks.elypia.com` to `localhost:4567`.
+    * requests from `webhooks.elypia.org` to `localhost:4567`.
     * If no reverse proxy is desired, `http://your.public.ip:4567/:uuid` is fine.
     * 
     * @param args
     */
     public static void main(String[] args) {
         // `publicUrl` must specify route parameter `uuid`.
-        WebHooker hooker = new WebHooker("https://webhooks.elypia.com/:uuid", 4567);
+        WebHooker hooker = new WebHooker("https://webhooks.elypia.org/:uuid", 4567);
 
         // Add a new client to the client controller.
         Client client = hooker.getController().add(new Client());
@@ -37,18 +37,21 @@ public class Main {
 }
 ```
 
-[discord]: https://discord.gg/hprGMaM "Discord Invite"
-[discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[bintray]: https://bintray.com/elypia/webhooker/core/_latestVersion "Bintray Latest Version"
-[bintray-download]: https://api.bintray.com/packages/elypia/webhooker/core/images/download.svg "Bintray Download Shield"
-[docs]: https://webhooker.elypia.com/ "Commandler Documentation"
-[docs-shield]: https://img.shields.io/badge/Docs-WebHooker-blue.svg "Commandler Documentation Shield"
+[matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
+[discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
+[bintray-page]: https://bintray.com/elypia/webhooker/core/_latestVersion "Bintray Latest Version"
+[documentation]: https://webhooker.elypia.org/ "Commandler Documentation"
 [gitlab]: https://gitlab.com/Elypia/webhooker/commits/master "Repository on GitLab"
-[gitlab-build]: https://gitlab.com/Elypia/webhooker/badges/master/pipeline.svg "GitLab Build Shield"
-[gitlab-coverage]: https://gitlab.com/Elypia/webhooker/badges/master/coverage.svg "GitLab Coverage Shield"
+[Gradle]: https://gradle.org/ "Depend via Gradle"
+[Maven]: https://maven.apache.org/ "Depend via Maven"
+[SparkJava]: http://sparkjava.com/ "SparkJava"
+[GSON]: https://github.com/google/gson "Google GSON"
+[elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 
-[gradle]: https://gradle.org/ "Depend via Gradle"
-[maven]: https://maven.apache.org/ "Depend via Maven"
-
-[spark]: http://sparkjava.com/ "SparkJava"
-[gson]: https://github.com/google/gson "Google GSON"
+[Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
+[Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
+[Bintray]: https://api.bintray.com/packages/elypia/webhooker/core/images/download.svg "Bintray Download Shield"
+[Docs]: https://img.shields.io/badge/Docs-WebHooker-blue.svg "Commandler Documentation Shield"
+[Build]: https://gitlab.com/Elypia/webhooker/badges/master/pipeline.svg "GitLab Build Shield"
+[Coverage]: https://gitlab.com/Elypia/webhooker/badges/master/coverage.svg "GitLab Coverage Shield"
+[Donate]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"
