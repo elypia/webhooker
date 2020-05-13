@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ public interface ClientController extends Iterable<Client> {
     /**
      * Create a new client.
      *
+     * @param callbacks Any callbacks to associate with the client.
      * @return Return the new client that was created.
      */
     default Client add(Dispatcher... callbacks) {
@@ -67,6 +68,8 @@ public interface ClientController extends Iterable<Client> {
     /**
      * Create a new client.
      *
+     * @param uuid The UUID of the client to get.
+     * @param callbacks Any callbacks to associate with the client.
      * @return Return the new client that was created.
      */
     default Client add(UUID uuid, Dispatcher... callbacks) {

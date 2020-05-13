@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -86,6 +86,7 @@ public class Webhooker implements Closeable {
      *             default if set to -1, a random port if 0, else the specified port.
      * @param controller The controller to manager clients.
      * @param gson The Gson (de)serializer for converting objects from JSON to POJO.
+     * @throws MalformedURLException If publicUrl is not a valid URL.
      */
     public Webhooker(String publicUrl, int port, ClientController controller, Gson gson) throws MalformedURLException {
         if (port < -1)
