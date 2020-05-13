@@ -23,7 +23,7 @@ import spark.*;
 import java.util.*;
 
 /**
- * An event object in WebHooker, this contains the
+ * An event object in Webhooker, this contains the
  * {@link Client}, {@link Request}, and {@link Response} associated
  * with a payload to a valid client.
  *
@@ -31,7 +31,7 @@ import java.util.*;
  */
 public class Payload {
 
-    /** The {@link Gson} object provided to {@link WebHooker#getGson() WebHooker}. */
+    /** The {@link Gson} object provided to {@link Webhooker#getGson() Webhooker}. */
     private final Gson gson;
 
     /** The never-null client that owns the POST request. */
@@ -44,7 +44,7 @@ public class Payload {
     private final Response response;
 
     /**
-     * @param gson The {@link Gson} object from {@link WebHooker#getGson()}}.
+     * @param gson The {@link Gson} object from {@link Webhooker#getGson()}}.
      * @param client The client from {@link ClientController#get(UUID)}.
      * @param request The request from the POST request.
      * @param response The response that will be sent back after running all callbacks.

@@ -18,7 +18,7 @@ package org.elypia.webhooker;
 
 /**
  * Multiple dispatchers can be assigned to a client
- * dispatchers are how webhook payloads are handled by WebHooker.
+ * dispatchers are how webhook payloads are handled by Webhooker.
  *
  * @author seth@elypia.org (Syed Shah)
  */
@@ -31,7 +31,7 @@ public interface Dispatcher {
      * the POST request.
      *
      * @param payload The client, request and response that represents this payload.
-     * @return If {@link WebHooker} should continue handling this payload.
+     * @return If {@link Webhooker} should continue handling this payload.
      */
     boolean dispatch(Payload payload);
 

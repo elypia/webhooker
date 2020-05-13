@@ -25,7 +25,7 @@ import java.util.*;
  * decide how clients are managed, they could be in memory like
  * the {@link MapClientController}, in a database, or Redis, whatever
  * is best fit for the application(s) being developed.
- * WebHooker only cares that one way or another it is able to
+ * Webhooker only cares that one way or another it is able to
  * store and get clients.
  *
  * @author seth@elypia.org (Syed Shah)

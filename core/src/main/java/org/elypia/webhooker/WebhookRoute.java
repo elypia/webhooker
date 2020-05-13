@@ -33,12 +33,12 @@ public class WebhookRoute implements Route {
     private static Logger logger = LoggerFactory.getLogger(WebhookRoute.class);
 
     /** The WebHook instance this {@link WebhookRoute} is registered to. */
-    private final WebHooker webhooker;
+    private final Webhooker webhooker;
 
     /**
-     * @param webhooker The parent {@link WebHooker} instance.
+     * @param webhooker The parent {@link Webhooker} instance.
      */
-    public WebhookRoute(final WebHooker webhooker) {
+    public WebhookRoute(final Webhooker webhooker) {
         this.webhooker = webhooker;
     }
 

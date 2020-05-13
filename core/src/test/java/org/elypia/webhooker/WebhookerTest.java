@@ -29,16 +29,16 @@ import static org.mockito.Mockito.*;
 /**
  * @author seth@elypia.org (Syed Shah)
  */
-public class WebHookerTest {
+public class WebhookerTest {
 
-    private static WebHooker hooker;
+    private static Webhooker hooker;
     private static TwitchService twitch;
     private static Request request;
     private static Response response;
 
     @BeforeEach
     public void beforeEach() throws MalformedURLException {
-        hooker = new WebHooker("http://localhost:4567/:uuid");
+        hooker = new Webhooker("http://localhost:4567/:uuid");
 
         twitch = new TwitchService();
         Spark.awaitInitialization();

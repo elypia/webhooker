@@ -1,8 +1,8 @@
-# WebHooker [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+# Webhooker [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
 The [Gradle]/[Maven] import string can be found at the Download badge above!
 
 ## About
-WebHooker is a small library for hosting webhook callbacks to receive and dispatch callbacks from
+Webhooker is a small library for hosting webhook callbacks to receive and dispatch callbacks from
 external services such as Twitch or Slack. This is done by running a webserver using [SparkJava] 
 and serializing JSON with [GSON], and then managing `Client`s to map the request URL to callback(s).
 
@@ -19,7 +19,7 @@ public class Main {
     */
     public static void main(String[] args) {
         // `publicUrl` must specify route parameter `uuid`.
-        WebHooker hooker = new WebHooker("https://webhooks.elypia.org/:uuid", 4567);
+        Webhooker hooker = new Webhooker("https://webhooks.elypia.org/:uuid", 4567);
 
         // Add a new client to the client controller.
         Client client = hooker.getController().add(new Client());
@@ -51,7 +51,7 @@ public class Main {
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [Bintray]: https://img.shields.io/bintray/v/elypia/webhooker/core "Bintray Download Shield"
-[Docs]: https://img.shields.io/badge/Docs-WebHooker-blue.svg "Commandler Documentation Shield"
+[Docs]: https://img.shields.io/badge/Docs-Webhooker-blue.svg "Commandler Documentation Shield"
 [Build]: https://gitlab.com/Elypia/webhooker/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/webhooker/badges/master/coverage.svg "GitLab Coverage Shield"
 [Donate]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"

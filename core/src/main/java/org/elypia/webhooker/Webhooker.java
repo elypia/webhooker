@@ -33,10 +33,10 @@ import static spark.Spark.*;
  *
  * @author seth@elypia.org (Syed Shah)
  */
-public class WebHooker implements Closeable {
+public class Webhooker implements Closeable {
 
     /** SLF4J logger. */
-    private static final Logger logger = LoggerFactory.getLogger(WebHooker.class);
+    private static final Logger logger = LoggerFactory.getLogger(Webhooker.class);
 
     /**
      * The public url the payloads can be made to. This could be the server
@@ -49,7 +49,7 @@ public class WebHooker implements Closeable {
     private final String publicUrl;
 
     /**
-     * A means to manage clients that are subscribed though WebHooker.
+     * A means to manage clients that are subscribed though Webhooker.
      * This is managed though an interface so it's easy to implement
      * a means to control clients that works best for your application such
      * as database, redis, or in memory (default).
@@ -65,20 +65,20 @@ public class WebHooker implements Closeable {
     /** A {@link Gson} instance for serializing and deserializing JSON. */
     private final Gson gson;
 
-    public WebHooker(String publicUrl) throws MalformedURLException {
+    public Webhooker(String publicUrl) throws MalformedURLException {
         this(publicUrl, -1);
     }
 
-    public WebHooker(String publicUrl, int port) throws MalformedURLException {
+    public Webhooker(String publicUrl, int port) throws MalformedURLException {
         this(publicUrl, port, new MapClientController());
     }
 
-    public WebHooker(String publicUrl, int port, ClientController controller) throws MalformedURLException {
+    public Webhooker(String publicUrl, int port, ClientController controller) throws MalformedURLException {
         this(publicUrl, port, controller, new Gson());
     }
 
     /**
-     * Create an instance of WebHooker.
+     * Create an instance of Webhooker.
      *
      * @param publicUrl The public URL public services are expected to POST to.
      *                  This must include a route parameter <code>/:uuid</code>.
@@ -87,7 +87,7 @@ public class WebHooker implements Closeable {
      * @param controller The controller to manager clients.
      * @param gson The Gson (de)serializer for converting objects from JSON to POJO.
      */
-    public WebHooker(String publicUrl, int port, ClientController controller, Gson gson) throws MalformedURLException {
+    public Webhooker(String publicUrl, int port, ClientController controller, Gson gson) throws MalformedURLException {
         if (port < -1)
             throw new IllegalArgumentException("`port` can not be below -1.");
 

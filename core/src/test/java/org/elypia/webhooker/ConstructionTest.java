@@ -31,7 +31,7 @@ public class ConstructionTest {
     /** Assign a invalid port. */
     @Test
     public void badPort() {
-        assertThrows(IllegalArgumentException.class, () -> new WebHooker("https://webhooks.elypia.org/:uuid", -5));
+        assertThrows(IllegalArgumentException.class, () -> new Webhooker("https://webhooks.elypia.org/:uuid", -5));
     }
 
     /**
@@ -40,24 +40,24 @@ public class ConstructionTest {
      */
     @Test
     public void badUrlNotMalformed() {
-        assertThrows(IllegalArgumentException.class, () -> new WebHooker("https://webhooks.elypia.org/", 0));
+        assertThrows(IllegalArgumentException.class, () -> new Webhooker("https://webhooks.elypia.org/", 0));
     }
 
     /** Specify an valid but incompatible protocol. */
     @Test
     public void badProtocol() {
-        assertThrows(IllegalArgumentException.class, () -> new WebHooker("ftp://webhooks.elypia.org/:uuid", 0));
+        assertThrows(IllegalArgumentException.class, () -> new Webhooker("ftp://webhooks.elypia.org/:uuid", 0));
     }
 
     /**
-     * Make sure WebHooker and Spark initialize correctly with the
+     * Make sure Webhooker and Spark initialize correctly with the
      * non-default port.
      *
      * @throws MalformedURLException It won't.
      */
     @Test
     public void nonDefaultPort() throws MalformedURLException {
-        WebHooker hooker = new WebHooker("http://localhost:4568/:uuid", 4568);
+        Webhooker hooker = new Webhooker("http://localhost:4568/:uuid", 4568);
         Spark.awaitInitialization();
 
         assertEquals(4568, Spark.port());

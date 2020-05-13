@@ -16,7 +16,7 @@
 
 rootProject.name = 'webhooker'
 
-/** The core of WebHooker, small and light libray to receive requests. */
+/** The core of Webhooker, small and light libray to receive requests. */
 include "core"
 
 /** An extension to manage clients via Redis instead of in memory. */
