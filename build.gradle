@@ -22,8 +22,8 @@ allprojects() {
     apply plugin: "idea"
     apply plugin: "jacoco"
 
-    group = "org.elypia.webhooker"
-    version = "2.0.3"
+    group = "org.elypia"
+    version = "2.1.0"
     description = "Webserver with single endpoint for managing webhooks and receiving payloads from clients."
 
     ext {
@@ -104,7 +104,7 @@ subprojects() {
         javadoc {
             options {
                 links += [
-                    "https://docs.oracle.com/en/java/javase/13/docs/api/"
+                    "https://docs.oracle.com/en/java/javase/11/docs/api/"
                 ]
             }
         }
@@ -176,15 +176,13 @@ subprojects() {
 }
 
 /** Generate Global JavaDocs for GitLab Pages */
-
 task globalJavadoc(type: Javadoc) {
     source = subprojects.collect { it.sourceSets.main.allJava }
     classpath = files(subprojects.collect { it.sourceSets.main.compileClasspath })
     destinationDir = file("${buildDir}/docs/javadoc")
 }
 
-/** Combine and ouput code coverage. */
-
+/** Combine and output code coverage. */
 task jacocoMerge(type: JacocoMerge) {
     executionData = files(subprojects.jacocoTestReport.executionData.findAll {it.asList() })
 
@@ -196,9 +194,9 @@ task jacocoMerge(type: JacocoMerge) {
 }
 
 task jacocoReport(type: JacocoReport, dependsOn: jacocoMerge) {
-    getSourceDirectories().setFrom(files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() }))
-    getClassDirectories().setFrom(files(subprojects.sourceSets.main.output.findAll { it.asList() }))
-    executionData = files(jacocoMerge.destinationFile)
+    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
+    classDirectories.from = files(subprojects.sourceSets.main.output.findAll { it.asList() })
+    executionData.from = files(jacocoMerge.destinationFile)
 
     reports {
         html.enabled = true
