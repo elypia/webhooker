@@ -50,7 +50,7 @@ public class Main {
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[Bintray]: https://api.bintray.com/packages/elypia/webhooker/core/images/download.svg "Bintray Download Shield"
+[Bintray]: https://img.shields.io/bintray/v/elypia/webhooker/core "Bintray Download Shield"
 [Docs]: https://img.shields.io/badge/Docs-WebHooker-blue.svg "Commandler Documentation Shield"
 [Build]: https://gitlab.com/Elypia/webhooker/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/webhooker/badges/master/coverage.svg "GitLab Coverage Shield"
