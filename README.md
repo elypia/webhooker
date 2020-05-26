@@ -1,4 +1,4 @@
-# Webhooker [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+# Webhooker [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
 The [Gradle]/[Maven] import string can be found at the Download badge above!
 
 ## About
@@ -39,7 +39,7 @@ public class Main {
 
 [matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
 [discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
-[bintray-page]: https://bintray.com/elypia/webhooker/core/_latestVersion "Bintray Latest Version"
+[maven-page]: https://search.maven.org/search?q=g:org.elypia.webhooker "Maven Central"
 [documentation]: https://elypia.gitlab.io/webhooker "Webhooker Documentation"
 [gitlab]: https://gitlab.com/Elypia/webhooker/commits/master "Repository on GitLab"
 [Gradle]: https://gradle.org/ "Depend via Gradle"
@@ -50,8 +50,8 @@ public class Main {
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[Bintray]: https://img.shields.io/bintray/v/elypia/webhooker/core "Bintray Download Shield"
-[Docs]: https://img.shields.io/badge/Docs-Webhooker-blue.svg "Webhooker Documentation Shield"
+[Maven Central]: https://img.shields.io/maven-central/v/org.elypia.webhooker/core "Download Shield"
+[Docs]: https://img.shields.io/badge/docs-Webhooker-blue.svg "Documentation Shield"
 [Build]: https://gitlab.com/Elypia/webhooker/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/webhooker/badges/master/coverage.svg "GitLab Coverage Shield"
-[Donate]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"
+[Donate]: https://img.shields.io/badge/elypia-Donate-blueviolet "Donate Shield"
