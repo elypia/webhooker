@@ -1,5 +1,5 @@
 # Webhooker [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle]/[Maven] import string can be found at the Download badge above!
+The [Gradle]/[Maven] import string can be found at the `maven-central badge above!
 
 ## About
 Webhooker is a small library for hosting webhook callbacks to receive and dispatch callbacks from
