@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC and Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,7 +44,6 @@ allprojects() {
 
 subprojects() {
     apply plugin: "java-library"
-    apply plugin: "maven"
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
 
@@ -88,7 +87,7 @@ subprojects() {
     jar {
         manifest {
             attributes "Implementation-Title": "${this.name}-${project.name}",
-                       "Implementation-Version": version
+                       "Implementation-Version": archiveVersion
         }
     }
 
